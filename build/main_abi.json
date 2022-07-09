@@ -1,0 +1,414 @@
+[
+    {
+        "members": [
+            {
+                "name": "random_number",
+                "offset": 0,
+                "type": "felt"
+            },
+            {
+                "name": "index",
+                "offset": 1,
+                "type": "felt"
+            }
+        ],
+        "name": "Card_Pick",
+        "size": 2,
+        "type": "struct"
+    },
+    {
+        "members": [
+            {
+                "name": "cost",
+                "offset": 0,
+                "type": "felt"
+            },
+            {
+                "name": "attack",
+                "offset": 1,
+                "type": "felt"
+            },
+            {
+                "name": "health",
+                "offset": 2,
+                "type": "felt"
+            }
+        ],
+        "name": "Card",
+        "size": 3,
+        "type": "struct"
+    },
+    {
+        "inputs": [
+            {
+                "name": "input",
+                "type": "felt"
+            },
+            {
+                "name": "at",
+                "type": "felt"
+            },
+            {
+                "name": "number_of_bits",
+                "type": "felt"
+            }
+        ],
+        "name": "actual_get_element_at",
+        "outputs": [
+            {
+                "name": "response",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "input",
+                "type": "felt"
+            },
+            {
+                "name": "at",
+                "type": "felt"
+            },
+            {
+                "name": "number_of_bits",
+                "type": "felt"
+            },
+            {
+                "name": "element",
+                "type": "felt"
+            }
+        ],
+        "name": "actual_set_element_at",
+        "outputs": [
+            {
+                "name": "response",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "constructor",
+        "outputs": [],
+        "type": "constructor"
+    },
+    {
+        "inputs": [
+            {
+                "name": "_index",
+                "type": "felt"
+            },
+            {
+                "name": "_player",
+                "type": "felt"
+            }
+        ],
+        "name": "get_draft",
+        "outputs": [
+            {
+                "name": "card_pick",
+                "type": "Card_Pick"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "get_players",
+        "outputs": [
+            {
+                "name": "player0",
+                "type": "felt"
+            },
+            {
+                "name": "player1",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "get_board",
+        "outputs": [
+            {
+                "name": "board",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "is_draft_complete",
+        "outputs": [
+            {
+                "name": "is_complete",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "_sig0",
+                "type": "felt"
+            }
+        ],
+        "name": "get_draft_from_sig",
+        "outputs": [
+            {
+                "name": "draft",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "_player",
+                "type": "felt"
+            }
+        ],
+        "name": "get_deck_len",
+        "outputs": [
+            {
+                "name": "deck_len",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "_player",
+                "type": "felt"
+            }
+        ],
+        "name": "get_hand",
+        "outputs": [
+            {
+                "name": "hand_cards_len",
+                "type": "felt"
+            },
+            {
+                "name": "hand_cards",
+                "type": "felt*"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "_player",
+                "type": "felt"
+            }
+        ],
+        "name": "get_player_board",
+        "outputs": [
+            {
+                "name": "board_cards_len",
+                "type": "felt"
+            },
+            {
+                "name": "board_cards",
+                "type": "felt*"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "get_current_player",
+        "outputs": [
+            {
+                "name": "current_player",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "get_current_turn",
+        "outputs": [
+            {
+                "name": "current_turn",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "get_full_board",
+        "outputs": [
+            {
+                "name": "hand0_cards_len",
+                "type": "felt"
+            },
+            {
+                "name": "hand0_cards",
+                "type": "felt*"
+            },
+            {
+                "name": "hand1_cards_len",
+                "type": "felt"
+            },
+            {
+                "name": "hand1_cards",
+                "type": "felt*"
+            },
+            {
+                "name": "board0_cards_len",
+                "type": "felt"
+            },
+            {
+                "name": "board0_cards",
+                "type": "felt*"
+            },
+            {
+                "name": "board1_cards_len",
+                "type": "felt"
+            },
+            {
+                "name": "board1_cards",
+                "type": "felt*"
+            },
+            {
+                "name": "damage0_len",
+                "type": "felt"
+            },
+            {
+                "name": "damage0",
+                "type": "felt*"
+            },
+            {
+                "name": "damage1_len",
+                "type": "felt"
+            },
+            {
+                "name": "damage1",
+                "type": "felt*"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "join_lobby",
+        "outputs": [
+            {
+                "name": "player_index",
+                "type": "felt"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "get_card_draft",
+        "outputs": [
+            {
+                "name": "card_draft",
+                "type": "felt"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "_card_index",
+                "type": "felt"
+            }
+        ],
+        "name": "select_card",
+        "outputs": [
+            {
+                "name": "new_draft",
+                "type": "felt"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "initial_draw",
+        "outputs": [
+            {
+                "name": "draw1",
+                "type": "felt"
+            },
+            {
+                "name": "draw2",
+                "type": "felt"
+            },
+            {
+                "name": "draw3",
+                "type": "felt"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "_actions_len",
+                "type": "felt"
+            },
+            {
+                "name": "_actions",
+                "type": "felt*"
+            }
+        ],
+        "name": "post_action",
+        "outputs": [
+            {
+                "name": "testRes",
+                "type": "felt"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "_counter",
+                "type": "felt"
+            },
+            {
+                "name": "_cards_len",
+                "type": "felt"
+            },
+            {
+                "name": "_cards",
+                "type": "Card*"
+            }
+        ],
+        "name": "set_cards",
+        "outputs": [],
+        "type": "function"
+    }
+]

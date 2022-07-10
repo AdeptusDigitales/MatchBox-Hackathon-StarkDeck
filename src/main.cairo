@@ -18,6 +18,7 @@ from lib.starknet_felt_packing_git.contracts.bits_manipulation import external a
 #Taken and and adjusted from https://github.com/milancermak/xoroshiro-cairo by milancermak 
 from src.lib.random import (Random, State)
 from src.lib.board_editor import Board
+#Have a look at this lib to understand the storage setup
 from src.lib.game_settings import (
     Attack_action,
     Placement_action,
@@ -1054,6 +1055,7 @@ func compute_actions{
             let (is_hero_dead) = is_le_felt(new_hero_hp,0)
             if is_hero_dead == 1:
                 #END GAME
+		#TODO The game should be ended here and a player should be crowned the victor
                 return(
                     _Hand0,
                     _Hand1,
@@ -1425,6 +1427,10 @@ func draw_card{
         at=deck_position + (DRAFT_LENGTH * DECK_INDEX_SIZE),
         number_of_bits = DECK_LEN_SIZE
     )
+    
+    #TODO:
+    #Handle the situation if the deck is empty
+    #Handle the situation if the hand is full
 
     #Check that deck length > 0
     assert_not_zero(deck_len) 

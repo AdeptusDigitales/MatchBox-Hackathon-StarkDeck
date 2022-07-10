@@ -31,7 +31,7 @@ The player whose health reaches 0 first, loses the game.
 ### The Draft Procedure:
 
 A player draws three random cards. </br>
-They select one of them and adds it to their deck. They discard the other two cards.</br>
+They select one of them and add it to their deck. They discard the other two cards.</br>
 The process is repeated until the player has reached the deck size limit (usualy around ~30 cards).</br>
 When both players have reached their deck limit, they proceed to play a match against each other.</br>
 Both players don't know what their opponents cards are until they play them.
@@ -39,11 +39,6 @@ Both players don't know what their opponents cards are until they play them.
 ### Storage
 
 The cairo contract has to store the following information:</br>
-1.) Cards in the hand of each player
-2.) Cards that are currently played on the Board
-3.) Damage dealt to each played card and player
-4.) The "deck". Cards that can be drawn by each player (decreases with each card that is being drawn)
-5.) The originally drafted cards
 1) Cards in the hand of each player
 2) Cards that are currently played on the Board
 3) Damage dealt to each played card and player
@@ -56,25 +51,36 @@ See `game_settings.cairo` for more info regarding the storage setup.
 
 ### Secret Draft
 
-The main challange of this game mode is that each player has to draft their deck randomly before the game, without the enemy knowing which cards they have drawn.</br>
-The main challange of creating this game mode was that each player has to draft their deck randomly before the game, without the enemy knowing which cards they have drawn. The individual cards are only revealed once they play them. </br>
+The main challange of creating this game mode was that each player has to draft their deck randomly before the game without the enemy knowing which cards they have drawn. The individual cards are only revealed once they play them. </br>
 This is achieved with the following process:</br>
 
-A player, that joins the game stores their private key that they will be using throughout the game.
+A player, that joins the game stores their public key that they will be using throughout the game in the game contract.
 A player creates a random number on-chain (We use a pseudo random number generator. Hopefully some gigabrain finds a good solution for random numbers in the future).<br>
-The random number is stored in the smart contract.</br>
+The random number is stored in the game contract.</br>
 Off-chain, the player hashes the random number and creates a signature.</br>
 They use the function `get_draft_from_sig()` in `main.cairo` to extract 6 numbers from the signature that represent the 3 randomly drawn cards.</br>
 E.g. 678201 means the player has drawn the cards with the IDs: 67, 82, and 01. As we only have 20 cards, the IDs are normalized to the range of 0-19.</br>
 The Card IDs are mapped to card stats: HP/Attack/Cost, these are set once by the creator of the lobby and not changed afterwards.</br>
 The player makes their selection by storing the index of the card they have choosen. So from the number 678201, if they select card 01, they store the index 2, as they have hosen the 3rd card of the draft.</br>
 
+The final stored draft for one player looks something like this:
+
+0 Card_Pick(random_number=279634723694, pick_index=0)
+
+1 Card_Pick(random_number=289583467234, pick_index=2)
+
+2 Card_Pick(random_number=028384723847, pick_index=0)
+
+3 Card_Pick(random_number=018932473727, pick_index=1)
+
+...
+
 ### Drawing a Card
 
 A card is drawn to a players hand by generating a random number. We take the last two digits of that number. Those represent the index of our draft.
 So if we generated the number 06, that means that we have drawn the card which we selected at the 7th (our index starts at 0) draw during the drafting phase. 
-This means our enemy only knows that we have drawn what ever card we drew during the 7th turn of our dradt, but we know exactly which card that was (this requires us remember what card we drew or to write that card down when we selected it).
+This means our enemy only knows that we have drawn what ever card we drew during the 7th turn of our draft, but we know exactly which card that was (this requires us remembering what card we drew or to write that card down when we selected it. This task should be taken care of by a client side interface that is used to interact with the game contract).
 
 ### Reveiling a Card
 
-Once a card is plaid on the board, it has to be revealed. The player only has to provide the signature that they generated when drawing the specific card during the drafting phase. Using the players public key and the stored random number they can validate that the signature is valid. From there, using the stored picked-card index (2 in our example) the contract can generate the card that we played (in our example that would be 01). 
+Once a card is placed on the board, it has to be revealed. The player only has to provide the signature that they generated when drawing the specific card during the drafting phase and the hand index of the card they want to play. Using the hand index, the smart contract can fetch the random number that was used to determine the 3 cards drawn in the draft. Using the players public key and that stored random number they can validate that provided signature is valid. From there, using the stored picked-card index (2 in our previous example) the contract can generate the card that we played (in our example that would be 01). 

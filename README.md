@@ -18,7 +18,7 @@ The game client was created with Unreal Engine 5. As there is no C++ library for
 ```diff
 -IMPORTANT
 ```
-The server was **NOT** created within the time frame of the Hackathon. The PNGs used for the playing cards and the blueprints that interact with the server where also created before the hackathon.
+The server was **NOT** created within the time frame of the Hackathon. The PNGs used for the playing cards and the blueprints that interact with the server where also created before the hackathon. Parts of the library `board_editor.cairo` (which transforms felts to dictionaries and back) where also created before the official start of the hackathon, so please treat that library as an external library that isn't part of the submission.
 
 ### The Game
 

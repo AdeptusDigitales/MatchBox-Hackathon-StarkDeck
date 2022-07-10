@@ -28,6 +28,18 @@ The cards have the following stats: Cost,Attack,Health.</br>
 Players use the cards to destoy their enemies cards and deal damage to the enemies health.</br>
 The player whose health reaches 0 first, loses the game.
 
+**The main ways to interact with the contract are:**
+
+`join_lobby()` -> your public key is stored in the contract and you have joined the game as either player 0 or player 1.
+
+`get_card_draft()` -> you generate the very first 3 cards from which to choose from.
+
+`select_card()` -> you select one of the three cards and generate the next 3 cards.
+
+`initial_draw()` -> you draw 3 cards from you deck to your hand
+
+`post_action()` -> This function is used to either: Place a card or use a card to attack. Your turn will end after the function is called, and a random number will be generated that the other player uses to draw a card.
+
 ### The Draft Procedure:
 
 A player draws three random cards. </br>

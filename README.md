@@ -7,6 +7,7 @@ The game is fully playable using only a smart-contract that is deployed on Stark
 Two players draft a deck of cards and then proceed to play against each other.</br>
 A demonstration of the Draft mode can be viewed at:</br>
 https://youtu.be/YFlvWvlrB7g
+Limited to 5min as per rules of the Hackathon.
 
 ### Project Setup
 
